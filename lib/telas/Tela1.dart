@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 22),
+                    padding: const EdgeInsets.only(left: 0),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -152,7 +152,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 22),
+                    padding: const EdgeInsets.only(left: 0),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -172,7 +172,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(30, 30, 0, 0),
                     child: Container(
                       width: 100.vw,
                       child: const Text("Precisa de Ajuda?",
