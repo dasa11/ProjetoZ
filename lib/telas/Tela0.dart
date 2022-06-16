@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:resize/resize.dart';
 import 'package:teste1/telas/Tela1.dart';
 import 'package:teste1/telas/TelaApoio.dart';
+import 'package:teste1/telas/TelaAprendizado.dart';
 
 
 class Tela0 extends StatefulWidget {
   const Tela0({Key ? key}) : super(key: key);
-
 
 
   @override
@@ -14,8 +15,8 @@ class Tela0 extends StatefulWidget {
 
 class _Tela0State extends State<Tela0> {
 
+  int pageIndex = 0;
   PageController _pageController = PageController();
-  int _page = 0;
   @override
   void initState()
   {
@@ -31,63 +32,72 @@ class _Tela0State extends State<Tela0> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color.fromRGBO(30, 29, 29, 1),
-        bottomNavigationBar: Theme(
-
-          data: Theme.of(context).copyWith
-            (
-              canvasColor: Colors.transparent,
-              primaryColor: Colors.transparent,
-              textTheme: Theme.of(context).textTheme.copyWith(
-                  caption: TextStyle(color: Colors.transparent))
-          ),
-
-          child: BottomNavigationBar(
-            selectedItemColor: Color(0xff3D8BFF),
-              type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Color(0x008C8C8C),
-            elevation: 0,
+    return Resize(
+      allowtextScaling: true,
+      baseForREM: 10,
+      builder: (){
+        return SafeArea(
+          child: Scaffold(
+            extendBody: true,
             backgroundColor: Color(0xffFFFFFF),
-            currentIndex: _page,
-            onTap: (p){
-              _pageController.animateToPage(p, duration: Duration(milliseconds: 500), curve: Curves.ease);
-            },
-            items:
-            [
-              BottomNavigationBarItem(
-                  icon: Icon(IconData(0xf677, fontFamily: 'MaterialIcons')),
-                  label: 'HOME'
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Container(
+                height: 55,
+                width: 7.w,
+                decoration: BoxDecoration(
+                  color: Color(0xffFAFAFA),
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: BottomNavigationBar(
+                    elevation: 0,
+                    currentIndex: pageIndex,
+                    backgroundColor: Color(0x00ffffff),
+                    selectedItemColor: Color(0xff3D8BFF),
+                    unselectedItemColor: Color(0xff8C8C8C),
+                    showUnselectedLabels: false,
+                    showSelectedLabels: true,
+                    selectedLabelStyle: const TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w700),
+                    type: BottomNavigationBarType.fixed,
+                    onTap: (p){
+                      _pageController.animateToPage(p, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                    },
+                    items: const [
+                      BottomNavigationBarItem(
+                          icon: Icon(IconData(0xf677, fontFamily: 'MaterialIcons')),
+                          label: 'Home',
+                          backgroundColor: Colors.black
+                      ),
+                      BottomNavigationBarItem(
+                          icon: Icon(IconData(0xf72c, fontFamily: 'MaterialIcons')),
+                          label: 'Aprendizado'
+                      ),
+                      BottomNavigationBarItem(
+                          icon: Icon(IconData(0xf72c, fontFamily: 'MaterialIcons')),
+                          label: 'JOGO'
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              BottomNavigationBarItem(
-                  icon: Icon(IconData(0xf72c, fontFamily: 'MaterialIcons')),
-                  label: 'JOGO'
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'PERFIL'
-              ),
-            ],
+            ),
+            body: PageView(
+              controller: _pageController,
+              onPageChanged: (p){
+                setState(() {
+                  pageIndex = p;
+                });
+              },
+              children: [
+                MyApp(),
+                TelaAprendizado(),
+                TelaApoio()
+              ],
+            ),
           ),
-        ),
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (p){
-            setState(() {
-              _page = p;
-            });
-          },
-          children: [
-            // TERCEIRA PAGINA ###########################################################################################
-            Container(
-            child: MyApp(),),
-            Container(color: Colors.white,
-              child: TelaApoio(),),
-          ],
-        ),
-
-      ),
+        );
+      },
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resize/resize.dart';
+import 'package:teste1/widgets/button.dart';
 import 'package:teste1/widgets/container_circular.dart';
+
+import '../widgets/card.dart';
 
 class TelaApoio extends StatefulWidget {
   const TelaApoio({Key? key}) : super(key: key);
@@ -26,24 +29,10 @@ class _TelaApoioState extends State<TelaApoio> {
                         color: const Color(0xff3D8BFF),
                         width: 100.vw,
                         height: 10.vh,
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(13, 0, 0, 5),
-                            child: Container(
-                              width: 30.w,
-                              height: 30.h,
-                              decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        )),
+                    ),
                     const Padding(
                       padding: EdgeInsets.only(top: 50),
-                      child: Text('Aprendizados',
+                      child: Text('Apoio',
                           style: TextStyle(
                               fontSize: 26,
                               fontFamily: 'Montserrat',
@@ -66,9 +55,9 @@ class _TelaApoioState extends State<TelaApoio> {
                         ),
                       ),
                     ),
-                    ContainerCircular(color: const Color(0xffFFE178), text: 'Ansiedade'),
-                    ContainerCircular(color: const Color(0xff3DC5FF), text: 'Bullyng'),
-                    ContainerCircular(color: const Color(0xff9C3AFD), text: 'Desânimo')
+                    Cardizinho(color: const Color(0xffFFE178), text: 'Ansiedade'),
+                    Cardizinho(color: const Color(0xff3DC5FF), text: 'Bullyng'),
+                    Cardizinho(color: const Color(0xffE34A4A), text: 'Desânimo')
                   ],
                 ),
               ),
